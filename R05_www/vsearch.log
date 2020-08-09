@@ -1,0 +1,5 @@
+<Request 'http://127.0.0.1:5000/search4' [POST]>{'a', 'e'}
+<Request 'http://127.0.0.1:5000/search4' [POST]>{'s', 'd', 'f'}
+<Request 'http://127.0.0.1:5000/search4' [POST]>{'o', 'k', 'J', '³', 'M', 'm'}
+<class 'datetime.datetime'> <Request 'http://127.0.0.1:5000/search4' [POST]>{'M', 'u', 's', 'e', 'ê', 'i', 'l'}
+2020-08-05 22:54:40.488219 <Request 'http://127.0.0.1:5000/search4' [POST]>{'e'}
