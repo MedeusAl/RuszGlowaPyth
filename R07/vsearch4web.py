@@ -1,8 +1,5 @@
-
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, escape
 from  defFunction import search4letters
-from _datetime import datetime
-from flask import escape
 
 app = Flask(__name__)
 
