@@ -46,13 +46,16 @@ def view_the_log() -> 'html':
                             the_data=contents,)
 
 def log_request (req: 'flask_request', res: str) -> None :
-    with open ('vsearch.log', 'a') as log:
-        #print(datetime.today(), str(dir(req)) + str(res), file=log) #różnica zapisu req, res VS str(req) + str(res) !logi zapisuja sie dobrze
-        # print(req.form, req.remote_addr, req.user_agent, res, file=log)
-        print(req.form, file=log, end='|')
-        print(req.remote_addr, file=log, end='|')
-        print(req.user_agent, file=log, end='|')
-        print(res, file=log)
+    dbconfig = {'host': '127.0.0.1', 'user': 'vsearch', 'password': 'vsearchpass', 'database': 'vsearchlogdb', }
+    import mysql.connector #czemu go nie ma??
+    conn = mysql.connector.connect(**dbconfig)
+    cursor = conn.cursor()
+    _SQL = """insert into log (phrase, letters, ip, browser_string, results) values (%s, %s, %s, %s, %s)"""
+    cursor.execute(_SQL, (req.form['phrase'], req.form['letters'], req.remote_addr, req.user_agent.browser, res, ))
+    conn.commit()#nie trzeba bo wpis laduja w pamiecie podrecznej - cache
+    cursor.close()
+    conn.close()
+
 
 if __name__ == '__main__':
    app.run(debug=True)
